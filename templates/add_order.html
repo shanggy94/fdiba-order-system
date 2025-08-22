@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавяне на поръчка</title>
+</head>
+<body>
+    <h2>Добавяне на нова поръчка</h2>
+    <form method="post">
+        <label>Потребител:</label>
+        <select name="user_id">
+            {% for user in users %}
+            <option value="{{ user['user_id'] }}">{{ user['username'] }}</option>
+            {% endfor %}
+        </select><br>
+        <label>Продукт:</label>
+        <select name="product_id">
+            {% for product in products %}
+            <option value="{{ product['product_id'] }}">{{ product['name'] }}</option>
+            {% endfor %}
+        </select><br>
+        <label>Количество:</label>
+        <input type="number" name="quantity" required><br>
+        <label>Дата (ГГГГ-ММ-ДД):</label>
+        <input type="text" name="order_date" required><br>
+        <input type="submit" value="Добави">
+    </form>
+    <a href="{{ url_for('index') }}">Назад</a>
+</body>
+</html>

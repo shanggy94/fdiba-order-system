@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактиране на поръчка</title>
+</head>
+<body>
+    <h2>Редактиране на поръчка</h2>
+    <form method="post">
+        <label>Потребител:</label>
+        <select name="user_id">
+            {% for user in users %}
+            <option value="{{ user['user_id'] }}" {% if user['user_id'] == order['user_id'] %}selected{% endif %}>
+                {{ user['username'] }}
+            </option>
+            {% endfor %}
+        </select><br>
+        <label>Продукт:</label>
+        <select name="product_id">
+            {% for product in products %}
+            <option value="{{ product['product_id'] }}" {% if product['product_id'] == order['product_id'] %}selected{% endif %}>
+                {{ product['name'] }}
+            </option>
+            {% endfor %}
+        </select><br>
+        <label>Количество:</label>
+        <input type="number" name="quantity" value="{{ order['quantity'] }}" required><br>
+        <label>Дата (ГГГГ-ММ-ДД):</label>
+        <input type="text" name="order_date" value="{{ order['order_date'] }}" required><br>
+        <input type="submit" value="Запази">
+    </form>
+    <a href="{{ url_for('index') }}">Назад</a>
+</body>
+</html>
